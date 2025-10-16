@@ -61,6 +61,7 @@
         text-align: center;
         box-shadow: var(--shadow);
         border: 1px solid var(--border-color);
+        background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
       }
       
       .service-highlight {
@@ -80,6 +81,7 @@
         font-weight: 600;
         margin-bottom: 1rem;
         box-shadow: var(--shadow);
+        animation: pulse 2s infinite;
       }
       
       .service-grid {
@@ -98,11 +100,14 @@
         position: relative;
         overflow: hidden;
         border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
       }
       
       .service-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-hover);
+        border-color: var(--highlight-color);
       }
       
       .service-card::before {
@@ -118,7 +123,9 @@
       .service-icon {
         font-size: 3rem;
         margin-bottom: 1rem;
-        
+        background: var(--highlight-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         background-clip: text;
       }
       
@@ -132,6 +139,7 @@
         border-radius: 20px;
         font-weight: 600;
         font-size: 0.9rem;
+        box-shadow: var(--shadow);
       }
       
       .features-list {
@@ -161,6 +169,8 @@
         margin: 4rem 0;
         box-shadow: var(--shadow);
         border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
       }
       
       .testimonial-card {
@@ -170,6 +180,12 @@
         box-shadow: var(--shadow);
         margin: 1rem 0;
         border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+      
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
       }
       
       .client-info {
@@ -197,13 +213,15 @@
         box-shadow: var(--shadow);
         transition: var(--transition);
         position: relative;
-        border: 2px solid transparent;
         border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
       }
       
       .package-card.popular {
         border-color: var(--highlight-color);
         transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
       }
       
       .package-card.popular .package-name {
@@ -262,6 +280,8 @@
         border-radius: 20px;
         font-weight: 600;
         font-size: 0.8rem;
+        box-shadow: var(--shadow);
+        animation: pulse 1.5s infinite;
       }
       
       /* Added missing CSS for process section */
@@ -281,11 +301,14 @@
         transition: var(--transition);
         position: relative;
         border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
       }
       
       .process-step:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-hover);
+        border-color: var(--highlight-color);
       }
       
       .step-number {
@@ -300,6 +323,7 @@
         font-size: 1.5rem;
         font-weight: bold;
         margin: 0 auto 1rem;
+        box-shadow: var(--shadow);
       }
       
       .cta-section {
@@ -310,6 +334,8 @@
         margin: 4rem 0;
         box-shadow: var(--shadow);
         border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
       }
       
       .cta-content h2 {
@@ -328,6 +354,19 @@
         justify-content: center;
         gap: 1rem;
         flex-wrap: wrap;
+      }
+      
+      /* Keyframe animations for premium effects */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+        }
       }
       
       @media (max-width: 768px) {
