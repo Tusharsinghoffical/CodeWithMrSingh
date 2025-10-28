@@ -143,6 +143,19 @@
         border: 1px solid var(--border-color);
         backdrop-filter: blur(10px);
         background: rgba(255, 255, 255, 0.05);
+        position: relative;
+      }
+
+      .testimonials-container {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials-slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
       }
 
       .testimonial-card {
@@ -150,9 +163,11 @@
         padding: 2rem;
         border-radius: var(--border-radius);
         box-shadow: var(--shadow);
-        margin: 1rem 0;
+        margin: 1rem;
         border: 1px solid var(--border-color);
         transition: var(--transition);
+        min-width: calc(100% - 2rem);
+        flex-shrink: 0;
       }
 
       .testimonial-card:hover {
@@ -165,6 +180,55 @@
         align-items: center;
         gap: 1rem;
         margin-top: 1rem;
+      }
+
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .carousel-btn {
+        background: var(--highlight-gradient);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+      }
+
+      .carousel-btn:hover {
+        transform: scale(1.1);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--border-color);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .indicator.active {
+        background: var(--highlight-color);
+        transform: scale(1.2);
       }
 
       .packages-section {
@@ -679,33 +743,76 @@
         <h2 style="text-align: center; margin-bottom: 3rem">
           Client <span class="service-highlight">Testimonials</span>
         </h2>
-        <div class="container">
-          <div class="testimonial-card">
-            <p>
-              "Tushar delivered our e-commerce website ahead of schedule and
-              exceeded our expectations. The attention to detail and technical
-              expertise is outstanding."
-            </p>
-            <div class="client-info">
-              <div>
-                <strong>Rajesh Kumar</strong><br />
-                CEO, TechStart Solutions
+        <div class="testimonials-container">
+          <div class="testimonials-slider">
+            <div class="testimonial-card">
+              <p>
+                "Tushar delivered our e-commerce website ahead of schedule and
+                exceeded our expectations. The attention to detail and technical
+                expertise is outstanding."
+              </p>
+              <div class="client-info">
+                <div>
+                  <strong>Rajesh Kumar</strong><br />
+                  CEO, TechStart Solutions
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>
+                "The AI chatbot Tushar built for our customer service has reduced
+                our response time by 80%. Truly transformative technology that has
+                improved our business operations."
+              </p>
+              <div class="client-info">
+                <div>
+                  <strong>Priya Sharma</strong><br />
+                  Director, HealthPlus Clinic
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>
+                "Working with Tushar on our data analysis project was a game-changer.
+                His insights helped us identify cost-saving opportunities we never
+                would have found otherwise. Highly recommended for any data-driven
+                business."
+              </p>
+              <div class="client-info">
+                <div>
+                  <strong>Amit Patel</strong><br />
+                  CFO, Global Manufacturing Inc.
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <p>
+                "The machine learning model Tushar developed for our predictive
+                maintenance system has saved us thousands in equipment downtime.
+                His technical skills and problem-solving abilities are exceptional."
+              </p>
+              <div class="client-info">
+                <div>
+                  <strong>Sneha Gupta</strong><br />
+                  Head of Engineering, SmartTech Solutions
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="testimonial-card">
-            <p>
-              "The AI chatbot Tushar built for our customer service has reduced
-              our response time by 80%. Truly transformative technology that has
-              improved our business operations."
-            </p>
-            <div class="client-info">
-              <div>
-                <strong>Priya Sharma</strong><br />
-                Director, HealthPlus Clinic
-              </div>
-            </div>
+          
+          <div class="carousel-controls">
+            <button class="carousel-btn prev-btn">‹</button>
+            <button class="carousel-btn next-btn">›</button>
+          </div>
+          
+          <div class="carousel-indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+            <div class="indicator" data-index="3"></div>
           </div>
         </div>
       </section>
@@ -988,6 +1095,62 @@
             }, 2000);
           }, 1000);
         });
+      });
+
+      // Testimonials Carousel Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.querySelector('.testimonials-slider');
+        const cards = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        let currentIndex = 0;
+        const cardWidth = cards[0].offsetWidth;
+        
+        // Update slider position
+        function updateSlider() {
+          slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+          
+          // Update indicators
+          indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+              indicator.classList.add('active');
+            } else {
+              indicator.classList.remove('active');
+            }
+          });
+        }
+        
+        // Next button click
+        nextBtn.addEventListener('click', () => {
+          if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            updateSlider();
+          }
+        });
+        
+        // Previous button click
+        prevBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+          }
+        });
+        
+        // Indicator click
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+          });
+        });
+        
+        // Auto-rotate every 5 seconds
+        setInterval(() => {
+          currentIndex = (currentIndex + 1) % cards.length;
+          updateSlider();
+        }, 5000);
       });
 
       // Debug: Check if all elements are loaded

@@ -1732,6 +1732,13 @@ body {
   color: var(--highlight-color);
 }
 
+.skill-chart-container {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
 .skill-tags {
   display: flex;
   flex-wrap: wrap;

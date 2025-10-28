@@ -26,6 +26,9 @@
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
+    <!-- Chart.js for Skills Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="style.css" />
     
     <!-- Google Translate -->
@@ -178,67 +181,37 @@
       </section>
 
       <section class="skills-section" data-aos="fade-up">
-        <h2>Skills & Technologies</h2>
+        <h2>Skills & Proficiency</h2>
         <div class="skills-grid">
+          <!-- AI & Machine Learning Skills -->
           <div class="skill-category">
             <h3>🤖 AI & Machine Learning</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">TensorFlow</span>
-              <span class="skill-tag">Scikit-learn</span>
-              <span class="skill-tag">Gemini API</span>
-              <span class="skill-tag">ChatGPT API</span>
-              <span class="skill-tag">OpenAI API</span>
-              <span class="skill-tag">DeepSeek API</span>
-              <span class="skill-tag">Claude API</span>
-              <span class="skill-tag">Google Gemini API</span>
+            <div class="skill-chart-container">
+              <canvas id="aiSkillsChart"></canvas>
             </div>
           </div>
 
+          <!-- Data Science Skills -->
           <div class="skill-category">
             <h3>📊 Data Science & Analysis</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Pandas</span>
-              <span class="skill-tag">NumPy</span>
-              <span class="skill-tag">Matplotlib</span>
-              <span class="skill-tag">Power BI</span>
-              <span class="skill-tag">Jupyter</span>
-              <span class="skill-tag">SQL</span>
-              <span class="skill-tag">Excel</span>
-              <span class="skill-tag">MySQL</span>
-              <span class="skill-tag">MongoDB</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">SQLite</span>
+            <div class="skill-chart-container">
+              <canvas id="dataSkillsChart"></canvas>
             </div>
           </div>
 
+          <!-- Web Development Skills -->
           <div class="skill-category">
             <h3>💻 Web Development</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">HTML</span>
-              <span class="skill-tag">CSS</span>
-              <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">Django</span>
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">Express</span>
+            <div class="skill-chart-container">
+              <canvas id="webSkillsChart"></canvas>
             </div>
           </div>
 
+          <!-- Tools & Platforms Skills -->
           <div class="skill-category">
             <h3>🛠️ Tools & Platforms</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">VS Code</span>
-              <span class="skill-tag">PyCharm</span>
-              <span class="skill-tag">Docker</span>
-              <span class="skill-tag">Firebase</span>
-              <span class="skill-tag">Mongoose</span>
-              <span class="skill-tag">Tailwind CSS</span>
-              <span class="skill-tag">Bootstrap</span>
-              <span class="skill-tag">Material UI</span>
-              <span class="skill-tag">Redux</span>
-              <span class="skill-tag">cursor</span>
+            <div class="skill-chart-container">
+              <canvas id="toolsSkillsChart"></canvas>
             </div>
           </div>
         </div>
@@ -473,6 +446,237 @@
               this.style.background = ''; // Reset to CSS gradient
             }, 2000);
           }, 1000);
+        });
+      });
+
+      // Initialize Skill Charts
+      window.addEventListener('load', function() {
+        // AI & Machine Learning Skills Chart
+        const aiCtx = document.getElementById('aiSkillsChart').getContext('2d');
+        new Chart(aiCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Python', 'TensorFlow', 'Scikit-learn', 'Gemini API', 'ChatGPT API', 'OpenAI API'],
+            datasets: [{
+              label: 'Proficiency %',
+              data: [95, 85, 90, 80, 75, 70],
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.7)',
+                'rgba(46, 204, 113, 0.7)',
+                'rgba(155, 89, 182, 0.7)',
+                'rgba(241, 196, 15, 0.7)',
+                'rgba(230, 126, 34, 0.7)',
+                'rgba(231, 76, 60, 0.7)'
+              ],
+              borderColor: [
+                'rgba(52, 152, 219, 1)',
+                'rgba(46, 204, 113, 1)',
+                'rgba(155, 89, 182, 1)',
+                'rgba(241, 196, 15, 1)',
+                'rgba(230, 126, 34, 1)',
+                'rgba(231, 76, 60, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.parsed.y + '% proficiency';
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        // Data Science Skills Chart
+        const dataCtx = document.getElementById('dataSkillsChart').getContext('2d');
+        new Chart(dataCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Pandas', 'NumPy', 'Matplotlib', 'Power BI', 'SQL', 'Jupyter'],
+            datasets: [{
+              label: 'Proficiency %',
+              data: [95, 90, 85, 80, 85, 90],
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.7)',
+                'rgba(46, 204, 113, 0.7)',
+                'rgba(155, 89, 182, 0.7)',
+                'rgba(241, 196, 15, 0.7)',
+                'rgba(230, 126, 34, 0.7)',
+                'rgba(231, 76, 60, 0.7)'
+              ],
+              borderColor: [
+                'rgba(52, 152, 219, 1)',
+                'rgba(46, 204, 113, 1)',
+                'rgba(155, 89, 182, 1)',
+                'rgba(241, 196, 15, 1)',
+                'rgba(230, 126, 34, 1)',
+                'rgba(231, 76, 60, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.parsed.y + '% proficiency';
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        // Web Development Skills Chart
+        const webCtx = document.getElementById('webSkillsChart').getContext('2d');
+        new Chart(webCtx, {
+          type: 'bar',
+          data: {
+            labels: ['HTML', 'CSS', 'JavaScript', 'React', 'Django', 'Node.js'],
+            datasets: [{
+              label: 'Proficiency %',
+              data: [95, 90, 85, 80, 75, 70],
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.7)',
+                'rgba(46, 204, 113, 0.7)',
+                'rgba(155, 89, 182, 0.7)',
+                'rgba(241, 196, 15, 0.7)',
+                'rgba(230, 126, 34, 0.7)',
+                'rgba(231, 76, 60, 0.7)'
+              ],
+              borderColor: [
+                'rgba(52, 152, 219, 1)',
+                'rgba(46, 204, 113, 1)',
+                'rgba(155, 89, 182, 1)',
+                'rgba(241, 196, 15, 1)',
+                'rgba(230, 126, 34, 1)',
+                'rgba(231, 76, 60, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.parsed.y + '% proficiency';
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        // Tools & Platforms Skills Chart
+        const toolsCtx = document.getElementById('toolsSkillsChart').getContext('2d');
+        new Chart(toolsCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Git', 'VS Code', 'Docker', 'Firebase', 'PyCharm', 'Bootstrap'],
+            datasets: [{
+              label: 'Proficiency %',
+              data: [90, 95, 80, 75, 85, 85],
+              backgroundColor: [
+                'rgba(52, 152, 219, 0.7)',
+                'rgba(46, 204, 113, 0.7)',
+                'rgba(155, 89, 182, 0.7)',
+                'rgba(241, 196, 15, 0.7)',
+                'rgba(230, 126, 34, 0.7)',
+                'rgba(231, 76, 60, 0.7)'
+              ],
+              borderColor: [
+                'rgba(52, 152, 219, 1)',
+                'rgba(46, 204, 113, 1)',
+                'rgba(155, 89, 182, 1)',
+                'rgba(241, 196, 15, 1)',
+                'rgba(230, 126, 34, 1)',
+                'rgba(231, 76, 60, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                  callback: function(value) {
+                    return value + '%';
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.parsed.y + '% proficiency';
+                  }
+                }
+              }
+            }
+          }
         });
       });
 
