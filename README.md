@@ -33,13 +33,6 @@ Portfolio/
 ├── style.css           # Main stylesheet
 ├── profile.jpg         # Profile image
 ├── me.jpg              # Additional image
-├── sitemap.xml         # SEO sitemap
-├── robots.txt          # SEO robots file
-├── SEO_STRATEGY.md     # SEO implementation guide
-├── Files/              # Project files directory
-│   ├── AI AGENTS/
-│   ├── Data Analysis/
-│   └── Data Science/
 └── README.md
 ```
 
@@ -50,10 +43,8 @@ Portfolio/
 - **Project Showcase**: Organized display of AI Agents, Data Analysis, and Data Science projects
 - **Dark/Light Mode**: Toggle between color schemes based on user preference
 - **Downloadable Resources**: Direct access to project files
-- **Newsletter Subscription**: Functional email subscription in footer
 - **Performance Optimized**: Fast loading times and smooth animations
-- **SEO Optimized**: Comprehensive search engine optimization for better visibility
-- **Social Media Ready**: Proper Open Graph and Twitter card metadata
+- **Social Media Ready**: Proper metadata for better sharing
 
 ## 🎯 Services Highlighted
 
@@ -62,15 +53,6 @@ Portfolio/
 - Automation through AI Agents
 - Data Analysis & Visualization
 - Python-based Solutions
-
-## 🔍 SEO Improvements
-
-- **Comprehensive Meta Tags**: Optimized title tags and descriptions for all pages
-- **Structured Data**: JSON-LD schema markup for rich search results
-- **Social Media Optimization**: Open Graph and Twitter cards for better sharing
-- **Technical SEO**: Sitemap.xml, robots.txt, canonical tags, and HTTPS enforcement
-- **Keyword Optimization**: Targeted keywords throughout the site
-- **Image Optimization**: Improved alt text for better accessibility and SEO
 
 ## 📦 Deployment Commands
 
