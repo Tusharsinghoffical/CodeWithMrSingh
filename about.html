@@ -28,9 +28,16 @@
 
     <link rel="stylesheet" href="style.css" />
     
+    <!-- Google Translate -->
+    <meta name="google-translate-customization" content="YOUR_TRANSLATE_KEY_HERE">
+    <link rel="stylesheet" href="translate.css" />
+    
   </head>
 
   <body>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 1000;"></div>
+    
     <header>
       <nav class="navbar">
         <div class="logo"><a href="index.html">Code With Mr Singh</a></div>
@@ -476,5 +483,18 @@
 
       // Debug: Check if all elements are loaded
     </script>
+    <!-- Google Translate JavaScript -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,es,fr,de,it,pt,ru,zh,ja,ko,ar',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
   </body>
 </html>
