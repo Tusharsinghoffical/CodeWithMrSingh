@@ -101,15 +101,6 @@
         background: var(--highlight-gradient);
       }
 
-      .service-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        background: var(--highlight-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
       .price-tag {
         position: absolute;
         top: 1rem;
@@ -206,6 +197,11 @@
       }
 
       .package-card.popular .package-name {
+        color: var(--highlight-color);
+      }
+
+      .service-icon {
+        font-size: 3rem;
         color: var(--highlight-color);
       }
 
@@ -324,12 +320,14 @@
       .cta-content h2 {
         font-size: 2.5rem;
         margin-bottom: 1rem;
+        color: var(--text-color);
       }
 
       .cta-content p {
         font-size: 1.2rem;
         max-width: 600px;
         margin: 0 auto 2rem;
+        color: var(--text-color);
       }
 
       .cta-buttons {
@@ -344,6 +342,14 @@
       .cta-buttons .btn-secondary {
         min-width: 150px;
         z-index: 10;
+        transition: var(--transition);
+        border: none;
+        background: var(--highlight-gradient);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        cursor: pointer;
       }
 
       /* Keyframe animations for premium effects */
@@ -931,12 +937,12 @@
       // Add loading animation
       window.addEventListener("load", () => {
         document.body.classList.add("loaded");
-        
+
         // Ensure CTA section is visible even if AOS fails
-        const ctaSection = document.querySelector('.cta-section');
+        const ctaSection = document.querySelector(".cta-section");
         if (ctaSection) {
-          ctaSection.style.opacity = '1';
-          ctaSection.style.transform = 'translateY(0)';
+          ctaSection.style.opacity = "1";
+          ctaSection.style.transform = "translateY(0)";
         }
       });
 
